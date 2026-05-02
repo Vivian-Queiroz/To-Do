@@ -2,18 +2,21 @@ import { useState } from 'react'
 import { Header } from './components/Header/Header'
 import { useTasks } from './hooks/useTasks'
 import { TaskForm } from './components/TaskForm/TaskForm'
+import { TaskList } from './components/TaskList/TaskList'
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [showForm, setShowForm] = useState(false)
-  const { tasks, addTask } = useTasks()
+  const { tasks, addTask, deleteTask } = useTasks()
 
-  console.log(tasks)
   
   function handleSave(taskData) {
-  addTask(taskData)
-  setShowForm(false)
-}
+    addTask(taskData)
+    setShowForm(false)
+  }
+
+
 
   return (
     <>
@@ -23,6 +26,7 @@ function App() {
         novaTarefa={() => setShowForm(true)}
         />
         {showForm && <TaskForm onCancel={() => setShowForm(false)} onSave={handleSave} />}
+        <TaskList tasks={tasks} onDelete={deleteTask} />
     </>
   )
 }  

@@ -8,9 +8,14 @@ export function useTasks() {
     setTasks([...tasks, task])
   }
 
+  function deleteTask(taskId){
+    setTasks(tasks.filter(task => task.id !== taskId))
+  }
+
   return{
     tasks,
-    addTask
+    addTask,
+    deleteTask,
   }
     
 }

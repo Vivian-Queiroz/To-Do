@@ -20,7 +20,7 @@ function App() {
 
   return (
 
-    <div className=" ">
+    <div className="pt-[40px] px-[60px] ">
       <Header
         darkMode={darkMode}
         setDarkMode={() => setDarkMode(!darkMode)}

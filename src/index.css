@@ -8,7 +8,7 @@ body {
 }
 
 @theme {
-  --color-full: #544AB8;
+  --color-primary: #544AB8;
   --color-danger: #E34A4A;
   --color-success: #1C9E75;
   --color-warning: #BA7517;

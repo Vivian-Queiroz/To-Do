@@ -19,7 +19,8 @@ function App() {
 
 
   return (
-    <>
+
+    <div className=" ">
       <Header
         darkMode={darkMode}
         setDarkMode={() => setDarkMode(!darkMode)}
@@ -27,7 +28,7 @@ function App() {
         />
         {showForm && <TaskForm onCancel={() => setShowForm(false)} onSave={handleSave} />}
         <TaskList tasks={tasks} onDelete={deleteTask} />
-    </>
+    </div>
   )
 }  
 export default App

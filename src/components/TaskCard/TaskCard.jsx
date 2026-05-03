@@ -8,7 +8,7 @@ export function TaskCard({task, onDelete}) {
   };
 
   return(
-    <div className="task-card">
+    <div className="">
       <h3>{task.title}</h3>
       <p>{task.category}</p>
       <p>{task.priority}</p>

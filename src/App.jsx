@@ -3,12 +3,13 @@ import { Header } from './components/Header/Header'
 import { useTasks } from './hooks/useTasks'
 import { TaskForm } from './components/TaskForm/TaskForm'
 import { TaskList } from './components/TaskList/TaskList'
+import { StatsBar } from './components/StatsBar/StatsBar'
 
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [showForm, setShowForm] = useState(false)
-  const { tasks, addTask, deleteTask } = useTasks()
+  const { tasks, addTask, deleteTask, stats, toggleTaskDone } = useTasks()
 
   
   function handleSave(taskData) {
@@ -20,14 +21,18 @@ function App() {
 
   return (
 
-    <div className="pt-[40px] px-[60px] ">
+    <div className="max-w-6xl flex flex-col gap-4 mx-auto p-8">
       <Header
         darkMode={darkMode}
-        setDarkMode={() => setDarkMode(!darkMode)}
-        novaTarefa={() => setShowForm(true)}
+        setDarkMode={() => setDarkMode(!darkMode)} 
+        novaTarefa={() => setShowForm(true)} 
         />
-        {showForm && <TaskForm onCancel={() => setShowForm(false)} onSave={handleSave} />}
-        <TaskList tasks={tasks} onDelete={deleteTask} />
+        <StatsBar stats={stats} /> {/* Passa as estatísticas para o componente StatsBar */}
+
+        {showForm && <TaskForm onCancel={() => setShowForm(false)} onSave={handleSave} />} {/* Exibe o formulário de tarefa quando showForm for true */}
+        
+        <TaskList tasks={tasks} onDelete={deleteTask} onToggleDone={toggleTaskDone} />
+
     </div>
   )
 }  

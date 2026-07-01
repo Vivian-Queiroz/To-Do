@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Header } from './components/Header/Header'
 import { useTasks } from './hooks/useTasks'
 import { TaskForm } from './components/TaskForm/TaskForm'
@@ -17,11 +17,12 @@ function App() {
     setShowForm(false)
   }
 
-
+  useEffect(() => {
+  document.body.classList.toggle('dark', darkMode)
+}, [darkMode])
 
   return (
-
-    <div className="max-w-6xl flex flex-col gap-4 mx-auto p-8">
+    <div className=" max-w-6xl flex flex-col gap-4 mx-auto p-8">
       <Header
         darkMode={darkMode}
         setDarkMode={() => setDarkMode(!darkMode)} 

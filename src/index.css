@@ -1,13 +1,10 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *)); 
+/* só ative o dark: quando o elemento tiver a classe .dark, não pela preferência do sistema */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-
-body {
-  background-color: #f4f4f5;
-  font-family: "Inter", sans-serif;
-}
-
 @theme {
+  --color-bg: #f4f4f5;
   --color-primary: #544AB8;
   --color-danger: #E34A4A;
   --color-success: #1C9E75;
@@ -24,4 +21,14 @@ body {
   --color-purple: #3D338A;
   --color-purple-100: #EDEDFF;
   --color-purple-200: #CFCCF5;
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: "Inter", sans-serif;
+}
+
+.dark {
+  background-color: #18181b;
+  color: #f4f4f5;
 }

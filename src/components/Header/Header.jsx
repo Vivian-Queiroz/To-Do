@@ -1,5 +1,3 @@
-
-
 export function Header({ darkMode, setDarkMode, novaTarefa }) {
   const today = new Date().toLocaleDateString('pt-BR', {
     weekday: 'long',
@@ -17,8 +15,8 @@ export function Header({ darkMode, setDarkMode, novaTarefa }) {
       </div>
 
       <div className="flex gap-3">
-        <button className="bg-white border-solid text-base text-gray border-gray-light border rounded-lg cursor-pointer w-9 h-9 flex items-center justify-center" onClick={setDarkMode}>☾</button>
-        <button className="bg-primary text-white text-sm border-solid border-primary rounded-lg cursor-pointer w-33 h-9 " onClick={novaTarefa}>+ Nova tarefa</button>
+        <button className="bg-white dark:bg-gray-800 dark:text-white border-solid text-base text-gray border-gray-light border rounded-lg cursor-pointer w-9 h-9 flex items-center justify-center" onClick={setDarkMode}>☾</button>
+        <button className="bg-primary dark:bg-gray-800 text-white text-sm border-solid border-primary rounded-lg cursor-pointer w-33 h-9 " onClick={novaTarefa}>+ Nova tarefa</button>
       </div>
     </header>
   )

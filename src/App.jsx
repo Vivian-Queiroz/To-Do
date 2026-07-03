@@ -27,7 +27,7 @@ function App() {
 }, [darkMode])
 
   return (
-    <div className=" max-w-6xl flex flex-col gap-4 mx-auto p-8">
+    <div className=" max-w-3xl  flex flex-col gap-4 mx-auto p-8">
       <Header
         darkMode={darkMode}
         setDarkMode={() => setDarkMode(!darkMode)} 

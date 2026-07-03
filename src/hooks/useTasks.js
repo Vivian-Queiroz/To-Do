@@ -12,10 +12,15 @@ export function useTasks() {
   //JSON.parse(texto)     → transforma texto de volta em array (pra usar)
 
   function addTask(task){
-    setTasks([...tasks, task])
+    const newTask = {
+      id: Date.now(), // gera um número único baseado no tempo atual
+      ...task,
+    }
+    setTasks([...tasks, newTask])
   }
 
   function deleteTask(taskId){
+    
     setTasks(tasks.filter(task => task.id !== taskId))
   }
 
@@ -24,7 +29,7 @@ export function useTasks() {
     done: tasks.filter(task => task.done).length, 
     pending: tasks.filter(task => !task.done).length, // Verifica se a tarefa não está concluída
     late: tasks.filter(task => { 
-      if (!task.done || task.done) return false; // Verifica se a tarefa não está concluída ou se está marcada como concluída (para considerar apenas as tarefas pendentes)
+      if (!task.date || task.done) return false; // Se a tarefa não tem data, OU se a tarefa já está concluída, então ela não conta como atrasada
       const [year, month, day] = task.date.split('-'); // Supondo que a data esteja no formato "YYYY-MM-DD"
       const taskDate = new Date(year, month - 1, day); // Cria um objeto Date para a data da tarefa
       const today = new Date(); // Data atual
@@ -33,6 +38,7 @@ export function useTasks() {
     }).length 
   }
 
+  //lógica para marcar como conluído
   function toggleTaskDone(Id){
     setTasks(tasks.map(task => {
       if (task.id === Id) {

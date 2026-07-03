@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export function useTasks() {
-  const [tasks, setTasks] = useState([]);
+  //funçao para o app ler o que esta salvo no localStorage,
+  const [tasks, setTasks] = useState(() => { 
+    const saved = localStorage.getItem('tasks')
+    return saved ? JSON.parse(saved) : [] 
+  });
+  //Se saved existir (não for null), converte o texto de volta pra array com JSON.parse. Se não existir, começa com um array vazio [].
+  //JSON.stringify(array) → transforma array em texto (pra salvar)
+  //JSON.parse(texto)     → transforma texto de volta em array (pra usar)
 
   function addTask(task){
     setTasks([...tasks, task])
@@ -14,7 +21,7 @@ export function useTasks() {
 
   const stats = {
     total: tasks.length,
-    done: tasks.filter(task => task.done).length,
+    done: tasks.filter(task => task.done).length, 
     pending: tasks.filter(task => !task.done).length, // Verifica se a tarefa não está concluída
     late: tasks.filter(task => { 
       if (!task.done || task.done) return false; // Verifica se a tarefa não está concluída ou se está marcada como concluída (para considerar apenas as tarefas pendentes)
@@ -35,6 +42,10 @@ export function useTasks() {
       }
     }))
   }
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  },[tasks])
 
   return{
     tasks,

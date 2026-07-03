@@ -7,7 +7,11 @@ import { StatsBar } from './components/StatsBar/StatsBar'
 
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const fav = localStorage.getItem('darkMode')
+    return fav ?  JSON.parse(fav) : false
+  });
+
   const [showForm, setShowForm] = useState(false)
   const { tasks, addTask, deleteTask, stats, toggleTaskDone } = useTasks()
 
@@ -19,6 +23,7 @@ function App() {
 
   useEffect(() => {
   document.body.classList.toggle('dark', darkMode)
+  localStorage.setItem('darkMode', JSON.stringify(darkMode))
 }, [darkMode])
 
   return (

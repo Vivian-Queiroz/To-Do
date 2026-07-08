@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @theme {
-  --color-bg: #f4f4f5;
+  --color-bg: #F4F4F5;
   --color-primary: #544AB8;
   --color-danger: #E34A4A;
   --color-success: #1C9E75;
@@ -29,6 +29,6 @@ body {
 }
 
 .dark {
-  background-color: #18181b;
-  color: #f4f4f5;
+  background-color: #1b1818;
+  color: oklab(100% 0 -0.00011);
 }

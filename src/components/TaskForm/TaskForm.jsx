@@ -45,8 +45,8 @@ export function TaskForm({onCancel, onSave}) {
       </div>
 
       <div className='flex gap-2 justify-end'>
-        <button type="button" onClick={onCancel} className='border rounded-lg h-9 px-4 text-sm'>Cancelar</button>
-        <button type="submit" className='border rounded-lg h-9 px-4 bg-primary text-white text-sm'>Salvar tarefa</button>
+        <button type="button" onClick={onCancel} className='border rounded-lg h-9 px-4 text-sm cursor-pointer'>Cancelar</button>
+        <button type="submit" className='border-none rounded-lg h-9 px-4 bg-primary text-white text-sm cursor-pointer'>Salvar tarefa</button>
       </div>
     </form>
   )

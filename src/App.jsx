@@ -14,7 +14,7 @@ function App() {
   });
 
   const [showForm, setShowForm] = useState(false)
-  const { tasks, addTask, deleteTask, stats, toggleTaskDone, filteredTasks, activeCategory, setActiveCategory  } = useTasks()
+  const { tasks, addTask, deleteTask, stats, toggleTaskDone, filteredTasks, activeCategory, setActiveCategory, sort, setSort  } = useTasks()
 
   
   function handleSave(taskData) {
@@ -39,9 +39,10 @@ function App() {
 
         {showForm && <TaskForm onCancel={() => setShowForm(false)} onSave={handleSave}/>} {/* Exibe o formulário de tarefa quando showForm for true */}
         
-        <Toolbar activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
-        
+        <Toolbar activeCategory={activeCategory} setActiveCategory={setActiveCategory} sort={sort} setSort={setSort} />
+
         <TaskList tasks={filteredTasks} onDelete={deleteTask} onToggleDone={toggleTaskDone}/>
+
 
 
     </div>

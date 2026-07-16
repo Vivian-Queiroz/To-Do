@@ -15,6 +15,10 @@ export function useTasks() {
   // Categoria usada para filtrar as tarefas. Vazio = mostra todas.
   const [activeCategory, setActiveCategory] = useState('')
 
+  //
+  const [sort, setSort] = useState('category')
+
+  const PRIORITY_ORDER = { Alta: 0, Média: 1, Baixa: 2 }
 
   // ─── Ações ──────────────────────────────────────────────────────────────────
 
@@ -41,6 +45,7 @@ export function useTasks() {
     }))
   }
 
+ 
 
   // ─── Dados calculados ───────────────────────────────────────────────────────
 
@@ -62,6 +67,16 @@ export function useTasks() {
   const filteredTasks = tasks.filter(task => {
     if (!activeCategory) return true // se não tem filtro ativo, mostra tudo
     return task.category === activeCategory // senão, só mostra se bater
+  }).sort((a, b) => {
+    if(sort === 'category'){
+      return a.category.localeCompare(b.category)
+    }
+    if(sort === 'priority'){
+      return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority]
+    }
+    if(sort === 'date'){
+      return new Date(a.date) - new Date(b.date)
+    }
   })
 
 
@@ -84,5 +99,7 @@ export function useTasks() {
     filteredTasks,
     activeCategory,
     setActiveCategory,
+    sort,
+    setSort
   }
 }

@@ -16,7 +16,10 @@ export function useTasks() {
   const [activeCategory, setActiveCategory] = useState('')
 
   //
-  const [sort, setSort] = useState('category')
+  const [sort, setSort] = useState(() => {
+    const savedSort = localStorage.getItem('sort')
+    return savedSort ? JSON.parse(savedSort) : 'category'
+  })
 
   const PRIORITY_ORDER = { Alta: 0, Média: 1, Baixa: 2 }
 
@@ -99,6 +102,9 @@ export function useTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks))
   },[tasks])
 
+  useEffect(() => {
+    localStorage.setItem("sort", JSON.stringify(sort))
+  },[sort])
 
   // ─── Retorno do hook ────────────────────────────────────────────────────────
 

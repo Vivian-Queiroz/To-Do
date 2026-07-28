@@ -20,6 +20,8 @@ export function useTasks() {
 
   const PRIORITY_ORDER = { Alta: 0, Média: 1, Baixa: 2 }
 
+  
+
   // ─── Ações ──────────────────────────────────────────────────────────────────
 
   function addTask(task){
@@ -32,6 +34,16 @@ export function useTasks() {
 
   function deleteTask(taskId){
     setTasks(tasks.filter(task => task.id !== taskId))
+  }
+
+  function editTask(id, novosDados) {
+    setTasks(tasks.map(task => {
+      if (task.id === id) {
+        return {...task, ...novosDados} // mescla os dados antigos com os novos
+      } else {
+        return task
+      }
+    }))
   }
 
   // Marca/desmarca uma tarefa como concluída
@@ -100,6 +112,7 @@ export function useTasks() {
     activeCategory,
     setActiveCategory,
     sort,
-    setSort
+    setSort,
+    editTask,
   }
 }

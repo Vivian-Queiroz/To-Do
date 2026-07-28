@@ -2,11 +2,12 @@ import { useState } from 'react'
 
 
 
-export function TaskForm({onCancel, onSave}) {
-  const [title, setTitle] = useState('')
-  const [category, setCategory] = useState('') 
-  const [priority, setPriority] = useState('')
-  const [date, setDate] = useState('')
+export function TaskForm({onCancel, onSave, taskEdit }) {
+  const [title, setTitle] = useState(taskEdit ? taskEdit.title : '')
+  const [category, setCategory] = useState(taskEdit ? taskEdit.category : '')
+  const [priority, setPriority] = useState(taskEdit ? taskEdit.priority : '')
+  const [date, setDate] = useState(taskEdit ? taskEdit.date : '')
+
 
   function handleSubmit(e) {
   e.preventDefault() // impede o formulário de recarregar a página

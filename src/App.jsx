@@ -7,6 +7,7 @@ import { StatsBar } from './components/StatsBar/StatsBar'
 import { Toolbar } from './components/Toolbar/Toolbar'
 
 
+
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
     const fav = localStorage.getItem('darkMode')
@@ -14,12 +15,23 @@ function App() {
   });
 
   const [showForm, setShowForm] = useState(false)
-  const { tasks, addTask, deleteTask, stats, toggleTaskDone, filteredTasks, activeCategory, setActiveCategory, sort, setSort  } = useTasks()
+  const { tasks, addTask, deleteTask, stats, toggleTaskDone, filteredTasks, activeCategory, setActiveCategory, sort, setSort, editTask   } = useTasks()
 
-  
+  const [taskEdit, setTaskEdit] = useState(null)
+
+
   function handleSave(taskData) {
-    addTask(taskData)
+    if (taskEdit) {
+      editTask(taskEdit.id, taskData) // chama a função, passando o ID da tarefa antiga e os novos dados do formulário
+    } else {
+      addTask(taskData)
+    }
     setShowForm(false)
+  }
+
+  function handleEdit(task) {
+    setTaskEdit(task)
+    setShowForm(true)
   }
 
   useEffect(() => {
@@ -37,13 +49,11 @@ function App() {
 
         <StatsBar stats={stats} /> {/* Passa as estatísticas para o componente StatsBar */}
 
-        {showForm && <TaskForm onCancel={() => setShowForm(false)} onSave={handleSave}/>} {/* Exibe o formulário de tarefa quando showForm for true */}
+        {showForm && <TaskForm taskEdit={taskEdit} onCancel={() => setShowForm(false)} onSave={handleSave}/>} {/* Exibe o formulário de tarefa quando showForm for true */}
         
         <Toolbar activeCategory={activeCategory} setActiveCategory={setActiveCategory} sort={sort} setSort={setSort} />
 
-        <TaskList tasks={filteredTasks} onDelete={deleteTask} onToggleDone={toggleTaskDone}/>
-
-
+        <TaskList tasks={filteredTasks} onDelete={deleteTask} onToggleDone={toggleTaskDone} onEdit={handleEdit} />
 
     </div>
   )

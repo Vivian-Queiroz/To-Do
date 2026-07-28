@@ -16,15 +16,15 @@ export function StatsBar({stats}){
 }
 function StatCard({label, value, color, progress, progressText}){
     return(
-      <div className="w-full h-22 rounded-lg text-base border p-3 border-gray-light">
-        <h3 className="text-[10px]  text-gray ">{label}</h3>
-        <p className={`text-lg  ${color}`}>{value}</p>
+      <div className="w-full h-22 rounded-lg text-base border p-3 dark:border-gray-light">
+        <h3 className="text-[12px]  dark:text-gray ">{label}</h3>
+        <p className={`text-[20px] ${color}`}>{value}</p>
           {progress !== undefined && (
-            <div className="w-full h-1.5 bg-gray-light rounded-full mt-1">
+            <div className="w-full h-1 bg-gray-light rounded-full mt-1">
               <div className="h-full bg-success rounded-full" style={{ width: `${progress}%` }} />
             </div>
           )}
-          {progressText && <p className="text-[10px] text-gray mt-1">{progressText}</p>}
+          {progressText && <p className="text-[10px] dark:text-gray mt-1">{progressText}</p>}
       </div>
     )
   } 

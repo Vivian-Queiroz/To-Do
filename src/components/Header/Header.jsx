@@ -1,4 +1,6 @@
-export function Header({ darkMode, setDarkMode, novaTarefa }) {
+import { MoonStar} from 'lucide-react'
+
+export function Header({ setDarkMode, novaTarefa }) {
   const today = new Date().toLocaleDateString('pt-BR', {
     weekday: 'long',
     month: 'long',
@@ -15,10 +17,11 @@ export function Header({ darkMode, setDarkMode, novaTarefa }) {
       </div>
 
       <div className="flex gap-3">
-        <button className="bg-white dark:bg-gray-800 dark:text-white border-solid text-base text-gray border-gray-light border rounded-lg cursor-pointer w-9 h-9 flex items-center justify-center" onClick={setDarkMode}>☾</button>
+        <button onClick={setDarkMode} className="bg-white dark:bg-fundo border border-solid border-gray rounded-lg cursor-pointer w-9 h-9 flex items-center justify-center">
+          <MoonStar size={18} className="text-gray dark:text-gray-light" />
+        </button>
         <button className="bg-primary text-white text-sm border-solid border-primary rounded-lg cursor-pointer w-33 h-9 " onClick={novaTarefa}>+ Nova tarefa</button>
       </div>
     </header>
   )
 }
-

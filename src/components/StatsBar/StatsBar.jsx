@@ -8,23 +8,23 @@ export function StatsBar({stats}){
       progressText={`${stats.done} de ${stats.total} concluídas`}
       />
 
-      <StatCard label="Concluídas" value={stats.done} color="text-success" />
+      <StatCard label="Concluídos" value={stats.done} color="text-success" />
       <StatCard label="Pendentes" value={stats.pending} color="text-warning" />
-      <StatCard label="Atrasadas" value={stats.late} color="text-danger" />
+      <StatCard label="Atrasados" value={stats.late} color="text-danger" />
     </div>
   )
 }
 function StatCard({label, value, color, progress, progressText}){
     return(
-      <div className="w-full h-22 rounded-lg text-base border p-3 dark:border-gray-light">
-        <h3 className="text-[12px]  dark:text-gray ">{label}</h3>
+      <div className="w-full h-24 rounded-lg text-base p-3 border dark:border-none dark:bg-black text-gray-ligth border-gray-light bg-white ">
+        <h3 className="text-[12px] dark:text-gray-ligth ">{label}</h3>
         <p className={`text-[20px] ${color}`}>{value}</p>
           {progress !== undefined && (
             <div className="w-full h-1 bg-gray-light rounded-full mt-1">
               <div className="h-full bg-success rounded-full" style={{ width: `${progress}%` }} />
             </div>
           )}
-          {progressText && <p className="text-[10px] dark:text-gray mt-1">{progressText}</p>}
+          {progressText && <p className="text-[10px] dark:text-gray-ligth mt-1">{progressText}</p>}
       </div>
     )
   } 

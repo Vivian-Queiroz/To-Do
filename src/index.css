@@ -5,12 +5,13 @@
 
 @theme {
   --color-bg: #F4F4F5;
+  --color-bg-dark: #1F1F1E;
   --color-primary: #544AB8;
   --color-danger: #E34A4A;
   --color-success: #1C9E75;
   --color-warning: #BA7517;
 
-  --color-black: #1A1A1F;
+  --color-black: #1A1A19;
   --color-white: #FFFFFF;
   --color-fundo: #2C2C2A;
   --color-gray: #707078;
@@ -30,6 +31,6 @@ body {
 }
 
 .dark {
-  background-color: #1b1818;
+  background-color: var(--color-bg-dark);
   color: oklab(100% 0 -0.00011);
 }
